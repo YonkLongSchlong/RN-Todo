@@ -10,6 +10,7 @@ export default function AddTodoModal({ showModal, setShowModal }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
+    const user = userStore((state) => state.user);
     const queryClient = useQueryClient();
     const token = userStore((state) => state.token);
 
@@ -22,7 +23,7 @@ export default function AddTodoModal({ showModal, setShowModal }) {
     });
 
     const addTodoHandler = () => {
-        addMutation.mutate({ title, description, category, token });
+        addMutation.mutate({ title, description, category, token, user });
         setShowModal(false);
     };
 

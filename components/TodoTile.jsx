@@ -18,10 +18,7 @@ export default function TodoTile({
     const token = userStore((state) => state.token);
     const queryClient = useQueryClient();
 
-    var options = {
-        hour: "numeric",
-        minute: "numeric",
-    };
+    var options = {};
 
     const deleteMutation = useMutation({
         mutationFn: deleteTodo,
@@ -72,7 +69,15 @@ export default function TodoTile({
                     </Text>
                 </View>
                 <Text style={styles.timeText}>
-                    {date.toLocaleTimeString("en-US", options)}
+                    {date.getUTCHours() < 12
+                        ? date.getUTCHours() +
+                          ":" +
+                          date.getUTCMinutes() +
+                          " AM"
+                        : date.getUTCHours() +
+                          ":" +
+                          date.getUTCMinutes() +
+                          " PM"}
                 </Text>
             </View>
 

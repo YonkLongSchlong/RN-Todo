@@ -30,6 +30,7 @@ export default function Home() {
     const [date, setDate] = useState(new Date());
     const [show, setShow] = useState(false);
     const token = userStore((state) => state.token);
+    const user = userStore((state) => state.user);
 
     const daysName = [
         "Sunday",
@@ -48,8 +49,9 @@ export default function Home() {
     };
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["todos", date, token],
-        queryFn: ({ queryKey }) => fetchTodosByDate(queryKey[1], queryKey[2]),
+        queryKey: ["todos", date, token, user.id],
+        queryFn: ({ queryKey }) =>
+            fetchTodosByDate(queryKey[1], queryKey[2], queryKey[3]),
     });
 
     if (data != undefined) {

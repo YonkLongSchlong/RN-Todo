@@ -1,7 +1,7 @@
-const createTodo = async ({ title, description, category, token }) => {
+const createTodo = async ({ title, description, category, token, user }) => {
     const apiUrl = process.env.EXPO_PUBLIC_API_URL;
     const todo = {
-        user_id: "d49de6cf-0faf-4d3f-a1bf-83bacbedf864",
+        user_id: user.id,
         title: title,
         description: description,
         category: category.toUpperCase(),
